@@ -1,0 +1,21 @@
+{% for cart in cart_product %}
+    Product: {{ cart.user_product }} <br>
+    Quantity: {{ cart.product_quantity }} <br>
+    Price: {{ cart.total_for_current_product }} <br>
+    <hr>
+    <form action="/delete-product/{{ cart.id }}" method="post">
+        {% csrf_token %}
+        <button>Delete from cart</button>
+
+    </form>
+{% endfor %}
+Total: {{ total }}
+
+<form action="/send-to-tg" method="post">
+    {% csrf_token %}
+    <input type="text" name="client_name" placeholder="Name"><br>
+    <input type="text" name="client_adress" placeholder="Adress"><br>
+    <input type="text" name="client_number" placeholder="Phone Number"><br>
+    <input type="text" name="client_comment" placeholder="Comment about order"><br>
+    <button>Order</button>
+</form>
